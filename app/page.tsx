@@ -10,12 +10,15 @@ import PatientForm from "@/components/forms/PatientForm";
 export default function Home() {
   return (
     <div className="flex h-screen max-h-screen">
+      {/*TODO: OTP verification | Passkey modal */}
       <section className="remove-scrollbar container my-auto">
         <div className="sub-container max-w-[496px] ml-23">
           <div className="flex items-center space-x-2 mb-12">
             <Icon icon="ep:first-aid-kit" className="h-10 w-10" />
             <h2 className="text-xl font-bold">VitaLink</h2>
           </div>
+
+          {/*Patient form */}
           <PatientForm />
           <div className="text-14-regular mt-20 flex">
             <p className="justify-items-end text-gray-600 xl: text-left">© 2025 VitaLink</p>
