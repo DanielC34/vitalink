@@ -19,18 +19,19 @@ import { CgProfile } from "react-icons/cg"; // Import the CgProfile icon
 
 // Assuming you have a FormSchema type defined in your PatientForm file
 interface CustomProps {
-  control: Control<FormSchema>,
+  control: Control<FormSchema>;
   fieldType: FormFieldType;
-  name: keyof FormSchema,
-  label?: string,
-  placeholder?: string,
-  iconSrc?: string, //Optional
-  iconAlt?: string, //Optional
-  disabled?: boolean,
-  dateFormat?: string,
-  showTimeSelect?: boolean,
-  children?: React.ReactNode,
-  renderSkeleton?: (field: FieldValues) => React.ReactNode
+  name: keyof FormSchema;
+  label?: string;
+  placeholder?: string;
+  icon?: JSX.Element;
+  iconSrc?: string; //Optional
+  iconAlt?: string; //Optional
+  disabled?: boolean;
+  dateFormat?: string;
+  showTimeSelect?: boolean;
+  children?: React.ReactNode;
+  renderSkeleton?: (field: FieldValues) => React.ReactNode;
 }
 
 const RenderField = ({
@@ -41,7 +42,7 @@ const RenderField = ({
   props: CustomProps;
   }) => {
   
-  const { fieldType, iconAlt, placeholder } = props;
+  const { fieldType, icon, iconAlt, placeholder } = props;
   
   switch (fieldType) {
     case FormFieldType.INPUT:
@@ -51,12 +52,18 @@ const RenderField = ({
             <Input
               placeholder={placeholder}
               {...field}
+              value={field.value ?? ""} // Ensure the value is always defined
               className="w-full bg-dark-400 text-white border border-dark-500 rounded-md pl-10 focus:ring-0 focus:outline-none"
             />
-            <CgProfile
-              aria-label={iconAlt || "User Profile"} // Accessibility label
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 h-6 w-6 text-gray-500"
-            />
+            {/* Icon */}
+            {icon && (
+              <div
+                className="absolute left-2 top-1/2 transform -translate-y-1/2"
+                aria-label={iconAlt || "icon"} // Accessibility label
+              >
+                {icon}
+              </div>
+            )}
           </div>
         </FormControl>
       );
