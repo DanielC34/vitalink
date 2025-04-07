@@ -1,11 +1,11 @@
-🏥 Patient Management System
+🏥 # Patient Management System
 A modern, responsive, and user-friendly Patient Management System built with Next.js and TypeScript. This project aims to streamline the way healthcare providers manage patient records, appointments, and more.
 
-🚧 Project Status
+🚧 # Project Status
 Currently under development.
 More features and documentation coming soon.
 
-⚙️ Technologies Used
+⚙️ # Technologies Used
 Framework & Language
 Next.js (v15.2.4)
 
