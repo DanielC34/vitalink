@@ -1,53 +1,47 @@
-🏥 # Patient Management System
-A modern, responsive, and user-friendly Patient Management System built with Next.js and TypeScript. This project aims to streamline the way healthcare providers manage patient records, appointments, and more.
+# 🏥 Patient Management System
 
-🚧 # Project Status
-Currently under development.
+A modern, responsive, and user-friendly **Patient Management System** built with **Next.js** and **TypeScript**. This project aims to streamline the way healthcare providers manage patient records, appointments, and more.
+
+## 🚧 Project Status
+
+**Currently under development.**  
 More features and documentation coming soon.
 
-⚙️ # Technologies Used
-Framework & Language
-Next.js (v15.2.4)
+## ⚙️ Technologies Used
 
-React (v19)
+### 🧠 Framework & Language
 
-TypeScript (v5)
+- **Next.js** (v15.2.4)
+- **React** (v19)
+- **TypeScript** (v5)
 
-Styling & UI
-Tailwind CSS (v4)
+### 🎨 Styling & UI
 
-tailwindcss-animate
+- **Tailwind CSS** (v4)
+- `tailwindcss-animate`
+- `tw-animate-css`
+- `clsx`
+- `class-variance-authority`
+- `next-themes`
 
-tw-animate-css
+### 🧩 UI Components & Icons
 
-clsx
+- **Radix UI** (`@radix-ui/react-*`)
+- **Lucide React**
+- **React Icons**
 
-class-variance-authority
+### 📝 Forms & Validation
 
-next-themes
+- **React Hook Form**
+- **Zod**
+- `@hookform/resolvers`
 
-UI Components & Icons
-Radix UI (@radix-ui/react-*)
+### 🛠️ Linting & Tooling
 
-Lucide React
-
-React Icons
-
-Forms & Validation
-React Hook Form
-
-Zod
-
-@hookform/resolvers
-
-Linting & Tooling
-ESLint
-
-PostCSS
-
-Tailwind CSS PostCSS plugin
-
-Type Definitions (@types/*)
+- **ESLint**
+- **PostCSS**
+- **Tailwind CSS PostCSS plugin**
+- Type Definitions (`@types/*`)
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
