@@ -5,7 +5,10 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
+import { MdEmail } from "react-icons/md"; // Import the email icon
 import CustomFormField from "../CustomFormField";
+import { CgProfile } from "react-icons/cg"; // Import the CgProfile icon
+import { MdOutlinePhone } from "react-icons/md";
 
 export enum FormFieldType {
   INPUT = 'input',
@@ -22,6 +25,12 @@ export const formSchema = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 characters.",
   }),
+  email: z.string().email({
+    message: "Invalid email address.",
+  }),
+  phone: z.string().min(10, {
+    message: "Phone number must be at least 10 digits.",
+  }),
 });
 
 export type FormSchema = z.infer<typeof formSchema>; // Export the inferred type
@@ -32,6 +41,8 @@ export default function PatientForm () {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
+      email: "",
+      // Add more fields as needed
     },
   });
 
@@ -57,10 +68,30 @@ export default function PatientForm () {
           name="name"
           label="Full name"
           placeholder="Ryan Garcia"
-          iconSrc="mdi:account"
           iconAlt="user"
+          icon={<CgProfile className="h-6 w-6 text-gray-500" />}
         />
-        <Button type="submit">Submit</Button>
+        <CustomFormField
+          fieldType={FormFieldType.INPUT}
+          control={form.control}
+          name="email"
+          label="Email"
+          placeholder="ryangarcia@example.com"
+          icon={<MdEmail className="h-6 w-6 text-gray-500" />} // Pass the email icon here
+          iconAlt="email"
+        />
+        <CustomFormField
+          fieldType={FormFieldType.INPUT}
+          control={form.control}
+          name="phone"
+          label="Phone Number"
+          placeholder="Enter your phone number"
+          icon={<MdOutlinePhone className="h-6 w-6 text-gray-500" />} // Pass the phone icon here
+          iconAlt="phone"
+        />
+        <Button type="submit" className="w-full">
+          Submit
+        </Button>
       </form>
     </Form>
   );
