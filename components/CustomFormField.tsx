@@ -14,7 +14,7 @@ import { FormFieldType } from './forms/PatientForm';
 import { FormSchema } from './forms/PatientForm'; // Import the shared type
 import { FieldValues } from 'react-hook-form';
 import { ControllerRenderProps } from "react-hook-form";
-import { Icon } from "@iconify/react";
+import { CgProfile } from "react-icons/cg"; // Import the CgProfile icon
 
 
 // Assuming you have a FormSchema type defined in your PatientForm file
@@ -41,27 +41,24 @@ const RenderField = ({
   props: CustomProps;
   }) => {
   
-  const { fieldType, iconSrc, iconAlt, placeholder } = props;
+  const { fieldType, iconAlt, placeholder } = props;
   
   switch (fieldType) {
     case FormFieldType.INPUT:
       return (
-        <div className="flex items-center rounded-md border border-yellow-500 bg-dark-900">
-          {iconSrc && (
-            <Icon
-              icon={iconSrc}
-              aria-label={iconAlt || "icon"}
-              className="ml-2 h-6 w-6"
-            />
-          )}
-          <FormControl className="w-full">
+        <FormControl>
+          <div className="relative w-full">
             <Input
               placeholder={placeholder}
               {...field}
-              className="w-full bg-dark-900 text-white border-0 focus:ring-0 focus:outline-none"
+              className="w-full bg-dark-400 text-white border border-dark-500 rounded-md pl-10 focus:ring-0 focus:outline-none"
             />
-          </FormControl>
-        </div>
+            <CgProfile
+              aria-label={iconAlt || "User Profile"} // Accessibility label
+              className="absolute left-2 top-1/2 transform -translate-y-1/2 h-6 w-6 text-gray-500"
+            />
+          </div>
+        </FormControl>
       );
     default:
       return null;
