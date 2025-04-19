@@ -14,7 +14,8 @@ import { FormFieldType } from './forms/PatientForm';
 import { FormSchema } from './forms/PatientForm'; // Import the shared type
 import { FieldValues } from 'react-hook-form';
 import { ControllerRenderProps } from "react-hook-form";
-import { CgProfile } from "react-icons/cg"; // Import the CgProfile icon
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 
 // Assuming you have a FormSchema type defined in your PatientForm file
@@ -65,6 +66,21 @@ const RenderField = ({
               </div>
             )}
           </div>
+        </FormControl>
+      );
+    
+    case FormFieldType.PHONE_INPUT:
+      return (
+        <FormControl>
+          <PhoneInput
+            defaultCountry="ZM"
+            placeholder={placeholder}
+            international
+            withCountryCallingCode
+            value={field.value as string | undefined} // Ensure the value is always defined
+            onChange={field.onChange}
+            className="input-phone border rounded-md bg-dark-400 border-dark-500 focus:ring-2 focus:ring-green-500 focus:border-green-500 focus:outline-none"
+          />
         </FormControl>
       );
     default:

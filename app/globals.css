@@ -71,6 +71,30 @@
   --sidebar-ring: oklch(0.527 0.154 150.069);
 }
 
+/* Override styles for react-phone-number-input dropdown */
+.react-phone-number-input__country {
+  color: var(--foreground); /* Use a darker text color */
+  background-color: var(--background); /* Ensure the background is light */
+}
+
+/* Ensure higher specificity for react-phone-number-input dropdown */
+.react-phone-number-input__country {
+  color: var(--foreground) !important; /* Use !important to force the text color */
+  background-color: var(--background) !important; /* Ensure the background is light */
+}
+
+.react-phone-number-input__country:hover {
+  background-color: var(--muted) !important; /* Add a hover effect */
+}
+
+.react-phone-number-input__country-name {
+  color: var(--foreground) !important; /* Ensure the country name text is dark */
+}
+
+.react-phone-number-input__icon {
+  fill: var(--foreground) !important; /* Ensure the flag icons are visible */
+}
+
 
 
 @theme inline {
