@@ -1,14 +1,16 @@
 "use client";
-
+import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { MdEmail } from "react-icons/md"; // Import the email icon
 import CustomFormField from "../CustomFormField";
 import { CgProfile } from "react-icons/cg"; // Import the CgProfile icon
 import { MdOutlinePhone } from "react-icons/md";
+import SubmitButton from "../SubmitButton";
+import { UserFormValidation } from "@/lib/validatio";
+import { useRouter } from "next/navigation";
 
 export enum FormFieldType {
   INPUT = 'input',
@@ -21,34 +23,39 @@ export enum FormFieldType {
   DATE_PICKER = 'date-picker',
 }
 
-export const formSchema = z.object({
-  name: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
-  }),
-  email: z.string().email({
-    message: "Invalid email address.",
-  }),
-  phone: z.string().min(10, {
-    message: "Phone number must be at least 10 digits.",
-  }),
-});
 
-export type FormSchema = z.infer<typeof formSchema>; // Export the inferred type
+export type FormSchema = z.infer<typeof UserFormValidation>; // Export the inferred type
 
-export default function PatientForm () {
+export default function PatientForm() {
+  
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+
   // 1. Define your form.
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof UserFormValidation>>({
+    resolver: zodResolver(UserFormValidation),
     defaultValues: {
       name: "",
       email: "",
+      phone: ""
       // Add more fields as needed
     },
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
+  async function onSubmit({name, email, phone}: z.infer<typeof UserFormValidation>) {
+    setIsLoading(true);
+
+    try {
+      // const userData = { name, email, phone };
+
+      // const user = await createUser(userData);
+
+      // if (user)
+      //   router.push(`/patients/${user.$id}/register`);
+     } catch (error) {
+      console.log(error)
+    }
     // ✅ This will be type-safe and validated.
     console.log(values);
   }
@@ -81,17 +88,15 @@ export default function PatientForm () {
           iconAlt="email"
         />
         <CustomFormField
-          fieldType={FormFieldType.INPUT}
+          fieldType={FormFieldType.PHONE_INPUT}
           control={form.control}
           name="phone"
           label="Phone Number"
-          placeholder="Enter your phone number"
+          placeholder="(e.g. +260 094 552194)"
           icon={<MdOutlinePhone className="h-6 w-6 text-gray-500" />} // Pass the phone icon here
           iconAlt="phone"
         />
-        <Button type="submit" className="w-full">
-          Submit
-        </Button>
+        <SubmitButton isLoading={isLoading}>Get Started!</SubmitButton>
       </form>
     </Form>
   );
